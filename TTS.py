@@ -1,9 +1,19 @@
-from tkinter import *
-from tkinter import ttk
-from tkinter.filedialog import asksaveasfilename
-import pyttsx3
-from tkinter import messagebox
+# from email.mime import image
+try:
+    from tkinter import *
+    from tkinter import ttk
+    from tkinter.filedialog import asksaveasfilename
+    from tkinter import messagebox
+    import pyttsx3
+except ImportError:
+    from os import system
+    print("Installing build dependencies...")
+    system("pip install pyttsx3")
+    import pyttsx3
+    
+
 converter = pyttsx3.init()
+
 def convert():
     if len(t1.get('1.0', END)) <= 1:
         messagebox.showwarning("Warning!", "Text Field can't be Empty!")
@@ -59,12 +69,12 @@ def save_as():
 def exit1():
     root.destroy()
 root = Tk()
-root.iconbitmap("Images/icon.ico")
+root.iconbitmap("img/icon.ico")
 canvas_width = 1100
 canvas_height = 700
 root.geometry(f"{canvas_width}x{canvas_height}+110+0")
 root.minsize(1100, 680)
-root.title("TTS | Author: TW")
+root.title("TTS | Author: Tech Wizard")
 f1 = Frame(root, bg="#4682b4")
 f1.pack(side=TOP, fill="x")
 l1 = Label(f1, text="Text to Speech", font="Helvetica 16 bold", fg="white", bg="#4682b4", pady=10)
@@ -89,16 +99,63 @@ sb.config(command=t1.yview)
 t1.config(yscrollcommand=sb.set)
 can = Canvas(root, height=20, width=100)
 can.place(relx=0.5, rely=0.95, anchor=CENTER)
-img1 = PhotoImage(file="Images/Button1.png")
-img2 = PhotoImage(file="Images/Button2.png")
-img3 = PhotoImage(file="Images/Button3.png")
-img4 = PhotoImage(file="Images/Button4.png")
-btn1 = Button(can, image=img1, borderwidth=0, command=convert, cursor='hand2')
-btn2 = Button(can, image=img2, borderwidth=0, command=save_as, cursor='hand2')
-btn3 = Button(can, image=img3, borderwidth=0, command=clear, cursor='hand2')
-btn4 = Button(can, image=img4, borderwidth=0, command=exit1, cursor='hand2')
-btn1.pack(side=LEFT, padx=40)
-btn2.pack(side=LEFT, padx=40)
-btn3.pack(side=LEFT, padx=40)
-btn4.pack(side=LEFT, padx=40)
+
+def convertEnter(e):
+    img1 = PhotoImage(file="img/Convert2.png")
+    convertbtn.config(image= img1)
+    convertbtn.image = img1
+def convertLeave(e):
+    img1 = PhotoImage(file="img/Convert1.png")
+    convertbtn.config(image= img1)
+    convertbtn.image = img1
+
+def saveEnter(e):
+    img2 = PhotoImage(file="img/SaveAs2.png")
+    savebtn.config(image= img2)
+    savebtn.image = img2
+def saveLeave(e):
+    img2 = PhotoImage(file="img/SaveAs1.png")
+    savebtn.config(image= img2)
+    savebtn.image = img2
+
+def clearEnter(e):
+    img3 = PhotoImage(file="img/Clear2.png")
+    clearbtn.config(image= img3)
+    clearbtn.image = img3
+def clearLeave(e):
+    img3 = PhotoImage(file="img/Clear1.png")
+    clearbtn.config(image= img3)
+    clearbtn.image = img3
+
+def exitEnter(e):
+    img4 = PhotoImage(file="img/Exit2.png")
+    exitbtn.config(image= img4)
+    exitbtn.image = img4
+def exitLeave(e):
+    img4 = PhotoImage(file="img/Exit1.png")
+    exitbtn.config(image= img4)
+    exitbtn.image = img4
+
+img1 = PhotoImage(file="img/Convert1.png")
+img2 = PhotoImage(file="img/SaveAs1.png")
+img3 = PhotoImage(file="img/Clear1.png")
+img4 = PhotoImage(file="img/Exit1.png")
+convertbtn = Button(can, image=img1, borderwidth=0, command=convert, cursor='hand2')
+savebtn = Button(can, image=img2, borderwidth=0, command=save_as, cursor='hand2')
+clearbtn = Button(can, image=img3, borderwidth=0, command=clear, cursor='hand2')
+exitbtn = Button(can, image=img4, borderwidth=0, command=exit1, cursor='hand2')
+convertbtn.pack(side=LEFT, padx=40)
+savebtn.pack(side=LEFT, padx=40)
+clearbtn.pack(side=LEFT, padx=40)
+exitbtn.pack(side=LEFT, padx=40)
+
+convertbtn.bind("<Enter>", convertEnter)
+convertbtn.bind("<Leave>", convertLeave)
+savebtn.bind("<Enter>", saveEnter)
+savebtn.bind("<Leave>", saveLeave)
+clearbtn.bind("<Enter>", clearEnter)
+clearbtn.bind("<Leave>", clearLeave)
+exitbtn.bind("<Enter>", exitEnter)
+exitbtn.bind("<Leave>", exitLeave)
+
 root.mainloop()
