@@ -1,4 +1,3 @@
-# from email.mime import image
 try:
     from tkinter import *
     from tkinter import ttk
@@ -22,7 +21,6 @@ def convert():
             voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_DAVID_11.0"
         else:
             voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0"
-            # voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_MARK_11.0"
         converter.setProperty('voice', voice_id)
         if combo2.get() == 'Slow':
             converter.setProperty("rate", 100)
@@ -51,7 +49,6 @@ def save_as():
             voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_DAVID_11.0"
         else:
             voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0"
-            # voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech_OneCore\Voices\Tokens\MSTTS_V110_enUS_MarkM"
 
         converter.setProperty('voice', voice_id)
         if combo2.get() == 'Slow':
