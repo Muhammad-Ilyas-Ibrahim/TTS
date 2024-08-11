@@ -35,6 +35,5 @@ pip install pyttsx3
 
 - Ensure that the `Images` folder contains the required image files for the buttons (`Button1.png`, `Button2.png`, `Button3.png`, `Button4.png`).
 - The application uses Microsoft voices installed on the system. Adjust the `voice_id` paths if necessary to match available voices on your system.
-```
 
 Feel free to modify the content as needed!
